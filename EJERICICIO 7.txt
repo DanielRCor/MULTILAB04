@@ -1,0 +1,155 @@
+EJERICICIO 7
+
+mixin Volador {
+  void volar() {
+    print("Esta volando");
+  }
+}
+
+mixin Navegante {
+  void navegar() {
+    print("Esta navegando");
+  }
+}
+
+mixin Acelerador {
+  void acelerar() {
+    print("Esta acelerando");
+  }
+}
+
+class Vehiculo {
+  String tipo;
+  
+  Vehiculo(this.tipo);
+  
+  void describir() {
+    print("Vehículo: $tipo");
+  }
+}
+
+class Avion extends Vehiculo with Volador, Acelerador {
+  Avion() : super("Avion");
+}
+
+class Bote extends Vehiculo with Navegante, Acelerador {
+  Bote() : super("Bote");
+}
+
+class Auto extends Vehiculo with Acelerador {
+  Auto() : super("Auto");
+}
+
+void main() {
+  var bote = Bote();
+  bote.describir();
+  bote.navegar();
+  bote.acelerar();
+  
+  print("");
+  
+  var avion = Avion();
+  avion.describir();
+  avion.volar();
+  avion.acelerar();
+  
+  print("");
+  
+  var auto = Auto();
+  auto.describir();
+  auto.acelerar();
+  
+  
+  
+  
+}
+
+
+
+EJERCICIO 8
+
+
+
+mixin LanzarHechizos {
+  void lanzarHechizo() {
+    print("Lanza un poderoso hechzo");
+  }
+}
+
+mixin AtacarConArmas {
+  void atacar() {
+    print("Ataca con su arma");
+  }
+}
+
+mixin Curar {
+  void curar() {
+    print("Cura a sus aliados");
+  }
+}
+
+class Personaje {
+  String nombre;
+  
+  Personaje(this.nombre);
+  
+  void presentarse() {
+    print("Soy $nombre");
+  }
+  
+  void usarHabilidades() {
+    
+  }
+}
+
+class Mago extends Personaje with LanzarHechizos, Curar {
+  Mago(String nombre) : super(nombre);
+  
+  @override
+  void usarHabilidades() {
+    lanzarHechizo();
+    curar();
+  }
+}
+
+class Guerrero extends Personaje with AtacarConArmas {
+  Guerrero(String nombre) : super(nombre);
+  
+  @override
+  void usarHabilidades() {
+    atacar();
+  }
+}
+
+class Paladin extends Personaje with AtacarConArmas, Curar {
+  Paladin(String nombre) : super(nombre);
+  
+  @override
+  void usarHabilidades() {
+    atacar();
+    curar();
+  }
+}
+
+class Clerigo extends Personaje with Curar {
+  Clerigo(String nombre) : super(nombre);
+  
+  @override
+  void usarHabilidades() {
+    curar();
+  }
+}
+
+void main() {
+  var mago = Mago("Merlín");
+  var guerrero = Guerrero("Conan");
+  var paladin = Paladin("Uther");
+  var clerigo = Clerigo("Anduin");
+  var personajes = [mago, guerrero, paladin, clerigo];
+  
+  for (var p in personajes) {
+    p.presentarse();
+    p.usarHabilidades();
+    print(""); // Separador
+  }
+}
